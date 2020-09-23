@@ -1,35 +1,9 @@
-<div class="box">
-    <div>
-        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
-        
-            <div class="ui cards">
-                <div class="card">
-                <div class="content">
-                    <div class="description">
+<form [formGroup]="loginForm" (submit)="onSubmit()" class="form">
+  <div class="ui input">
+    <input class="my-input" type="text" formControlName="login" />
+    <input class="my-input" type="password" formControlName="password" />
+  </div>
 
-                        <div class="ui input">
-                            <input formControlName="login" type="text" placeholder="Login">
-                        </div>
-                        <div class="ui input">
-                            <input formControlName="password" type="password" placeholder="Password">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui bottom attached">
-                    <button class="fluid ui button" type="submit" [disabled]="!loginFormGroup.valid">Login !</button>
-                </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div>
-        <br><br>
-        <div *ngIf="loginFormGroup.get('login').errors">
-            <p *ngIf="loginFormGroup.get('login').errors.required">Login obligatoire</p>
-            <p *ngIf="loginFormGroup.get('login').errors.minlength">Le login doit au moins faire 3 caractères</p>
-        </div>
-        <p *ngIf="loginFormGroup.get('password').errors?.required">Password obligatoire</p>
-        <p *ngIf="loginInError">Erreur de login !!!! Réessayez</p>
-    </div>
-</div>
+  <button class="ui primary button" type="submit" *ngIf="!loading">Login</button>
+  <app-loading *ngIf="loading"></app-loading>
+</form>

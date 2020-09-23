@@ -1,43 +1,40 @@
-import { LoginService } from './services/login-service/login.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from './../shared/services/user/user.service';
+import { Component, OnInit, Output, EventEmitter, isDevMode } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Output() isLoginChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  public loginInError: boolean = false;
+  public loginForm: FormGroup;
+  public loading: boolean;
 
-  public loginFormGroup: FormGroup = this._formBuilder.group({
-    login: ['', [Validators.required, Validators.minLength(3)]],
-    password: ['', Validators.required]
-  });
+  constructor(private fb: FormBuilder, private user: UserService) { }
 
-  constructor(
-    private _formBuilder: FormBuilder, 
-    private _loginService: LoginService) { }
+  ngOnInit() {
+    this.loading = false;
 
-  ngOnInit(): void {
-    this._loginService.previouslyLogged()
-      .then(res => console.log('previousLogged', res))
-  }
+    let log = '';
+    let pass = '';
 
-  async onSubmit() {
-    this.loginInError = false;
-    const isLogin: boolean = await this._loginService.checkUser(
-      {
-        login: this.loginFormGroup.get('login').value,
-        password: this.loginFormGroup.get('password').value
-      });
-
-    if (isLogin) {
-      this.isLoginChange.emit(isLogin);
-    } else {
-      this.loginInError = true;
+    if (isDevMode()) {
+      log = 'admin';
+      pass = 'password';
     }
+
+    this.loginForm = this.fb.group({
+      login: [log, Validators.required],
+      password: [pass, Validators.required]
+    });
   }
 
+  onSubmit() {
+    this.loading = true;
+
+    this.user.login(this.loginForm.value).then((res) => {
+      this.loading = false;
+    });
+  }
 }

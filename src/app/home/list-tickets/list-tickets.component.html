@@ -4,6 +4,7 @@
 
 <div class="listTickets" *ngIf="!loading">
   <app-ticket *ngFor="let ticket of tickets; let i = index" (edit)="onEdit(i)" (delete)="onDelete(i)"
-  [title]="ticket.name" [description]="ticket.description" [nbLefts]="ticket.nbLefts" [urlImage]="ticket.urlImage">
+  [ticket]="ticket" [title]="ticket.name" [description]="ticket.description" 
+  [nbLefts]="ticket.nbLefts" [urlImage]="ticket.urlImage">
   </app-ticket>
 </div>

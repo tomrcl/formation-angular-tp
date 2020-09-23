@@ -2,7 +2,9 @@ import { Ticket } from './../../models/ticket.class';
 import { MOCK_TICKETS } from './../../mock/ticket.mock';
 import {Injectable} from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TicketsService {
     public tickets: Ticket[];
 

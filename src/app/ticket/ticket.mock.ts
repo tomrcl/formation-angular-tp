@@ -6,7 +6,7 @@ export const MOCK_TICKETS: ITicket[] = [
         description: "Une place de cinéma gratuite",
         expiration: 1566040301000,
         nbLefts: 1,
-        urlImage: "https://s1.qwant.com/thumbr/0x380/8/f/95fa1bc527dc927495aa08621bb7b36a6055b7bc51d4436057b485e3a3f21c/9fde31d863c1a8dfee1977604ebdb9b4.jpg?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F9f%2Fde%2F31%2F9fde31d863c1a8dfee1977604ebdb9b4.jpg&q=0&b=1&p=0&a=1"
+        urlImage: "https://s1.qwant.com/thumbr/0x380/9/f/04983a6cb0ac2988b89f24492c423127eb6a900ff8e9f14de1508a1b101c26/maxresdefault.jpg?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2F1WsWd-Zb2tw%2Fmaxresdefault.jpg&q=0&b=1&p=0&a=1"
     },
     {
         name: "Spécialité fruits de mer *****",

@@ -1,39 +1,34 @@
-import { TicketsService } from './list-tickets/shared/services/tickets/tickets.service';
-import { LoadingComponent } from './shared/components/loading/loading.component';
-import { HttpModule } from '@angular/http';
-import { UserService } from './shared/services/user/user.service';
-import { APIHelper } from './shared/services/api-helper/api-helper.service';
-import { TicketComponent } from './list-tickets/shared/components/ticket/ticket.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { AddeditComponent } from './home/addedit/addedit.component';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
+import { APP_ROUTES } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListTicketsComponent } from './list-tickets/list-tickets.component';
-import { StorageService } from './shared/services/storage/storage.service';
+import { HomeComponent } from './home/home.component';
+import { ListTicketsComponent } from './home/list-tickets/list-tickets.component';
+import { TicketComponent } from './home/list-tickets/shared/components/ticket/ticket.component';
 import { LoginComponent } from './login/login.component';
-import {HttpClientModule} from '@angular/common/http';
-
+import { LoadingComponent } from './shared/components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListTicketsComponent,
-    TicketComponent,
     LoginComponent,
-    LoadingComponent
+    LoadingComponent,
+    HomeComponent,
+    TicketComponent,
+    ListTicketsComponent,
+    AddeditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    APIHelper,
-    StorageService,
-    UserService,
-    TicketsService
+    HttpClientModule,
+    RouterModule.forRoot(APP_ROUTES),
   ],
   bootstrap: [AppComponent]
 })

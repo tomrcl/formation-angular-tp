@@ -4,6 +4,6 @@
     <input class="my-input" type="password" formControlName="password" />
   </div>
 
-  <button class="ui primary button" type="submit" *ngIf="!loading">Login</button>
+  <button class="ui primary button" type="submit" *ngIf="!loading" [disabled]="!loginForm.valid">Login</button>
   <app-loading *ngIf="loading"></app-loading>
 </form>

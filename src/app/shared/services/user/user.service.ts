@@ -3,7 +3,9 @@ import { APIHelper } from './../api-helper/api-helper.service';
 import { User, UserInfosInterface } from './../../class/user/user';
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class UserService {
   private _user: User;
 

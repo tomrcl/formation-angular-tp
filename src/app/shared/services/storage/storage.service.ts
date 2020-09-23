@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class StorageService {
 
     constructor() {
@@ -15,6 +17,13 @@ export class StorageService {
     public set({key, value}: { key: string, value: string }): Promise<boolean> {
         return new Promise((resolve) => {
             window.localStorage.setItem(key, value);
+            resolve(true);
+        });
+    }
+
+    public remove({key}: { key: string }): Promise<boolean> {
+        return new Promise((resolve) => {
+            window.localStorage.removeItem(key)
             resolve(true);
         });
     }

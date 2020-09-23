@@ -1,0 +1,11 @@
+<div class="container">
+    <img [src]="ticket.urlImage" class="img" />
+    <div>
+        <h3>{{ticket.name}} - {{ticket.nbLefts}} restant<span *ngIf="ticket.nbLefts > 1">s</span></h3>
+        <p>{{ticket.description}}</p>
+        <button (click)="edit(ticket)">EDIT</button>
+        <button (click)="delete(ticket)">DELETE</button>
+    </div>
+</div>
+
+<hr>

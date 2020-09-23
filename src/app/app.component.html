@@ -1,3 +1,3 @@
+<app-login *ngIf="!isUserLogin" (isLoginChange)="isUserLogin = $event"></app-login>
 
-
-<app-list-tickets></app-list-tickets>
+<app-list-tickets *ngIf="isUserLogin"></app-list-tickets>

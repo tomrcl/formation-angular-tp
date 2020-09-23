@@ -1,6 +1,6 @@
-import { MOCK_TICKETS } from './shared/mock/ticket.mock';
 import { Ticket } from './shared/models/ticket.class';
 import { Component, OnInit } from '@angular/core';
+import { TicketService } from './services/ticket.service';
 
 @Component({
   selector: 'app-list-tickets',
@@ -10,21 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class ListTicketsComponent implements OnInit {
   public tickets: Ticket[];
 
-  constructor() { }
+  constructor(public ticketService: TicketService) { }
 
   ngOnInit() {
-    this.tickets = [];
-
-    MOCK_TICKETS.forEach((ticket) => {
-      this.tickets.push(new Ticket(ticket));
-    });
-  }
-
-  public onEdit(index: number) {
-    console.log(`EDIT ${index}`);
-  }
-
-  public onDelete(index: number) {
-    console.log(`DELETE ${index}`);
+    this.ticketService.loadTickets()
+      .then(tickets => this.tickets = tickets);
   }
 }

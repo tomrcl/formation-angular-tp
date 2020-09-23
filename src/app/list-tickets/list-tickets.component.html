@@ -1,5 +1,9 @@
+<div *ngIf="this.ticketService.isLoading" class="ui large active centered inline loader"></div>
+
 <div>
-  <app-ticket *ngFor="let ticket of tickets; let i = index" (edit)="onEdit(i)" (delete)="onDelete(i)"
+  <app-ticket *ngFor="let ticket of tickets; let i = index" 
+      (edit)="this.ticketService.edit(i)" 
+      (delete)="this.ticketService.delete(i)"
     [title]="ticket.name" [description]="ticket.description" [nbLefts]="ticket.nbLefts" [urlImage]="ticket.urlImage">
   </app-ticket>
 </div>

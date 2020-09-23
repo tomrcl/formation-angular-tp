@@ -1,25 +1,30 @@
-import { Tickets } from './../ticket/tickets';
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ITicket } from '../ticket/ticket.interface';
+import { MOCK_TICKETS } from './shared/mock/ticket.mock';
+import { Ticket } from './shared/models/ticket.class';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-tickets',
   templateUrl: './list-tickets.component.html',
-  styleUrls: ['./list-tickets.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./list-tickets.component.scss']
 })
 export class ListTicketsComponent implements OnInit {
-  @Input() listTickets: Tickets;
+  public tickets: Ticket[];
 
-  ngOnInit(): void {
-  }
-  
-  editTicket(ticket: ITicket) {
-    this.listTickets.editTicket(ticket);
+  constructor() { }
+
+  ngOnInit() {
+    this.tickets = [];
+
+    MOCK_TICKETS.forEach((ticket) => {
+      this.tickets.push(new Ticket(ticket));
+    });
   }
 
-  deleteTicket(ticket: ITicket) {
-    this.listTickets.deleteTicket(ticket);
+  public onEdit(index: number) {
+    console.log(`EDIT ${index}`);
   }
 
+  public onDelete(index: number) {
+    console.log(`DELETE ${index}`);
+  }
 }

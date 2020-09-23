@@ -1,3 +1,5 @@
-<div *ngFor="let ticket of listTickets.allTickets">
-    <app-ticket [ticket]="ticket" (editTicket)="editTicket($event)" (deleteTicket)="deleteTicket($event)"></app-ticket>
+<div>
+  <app-ticket *ngFor="let ticket of tickets; let i = index" (edit)="onEdit(i)" (delete)="onDelete(i)"
+    [title]="ticket.name" [description]="ticket.description" [nbLefts]="ticket.nbLefts" [urlImage]="ticket.urlImage">
+  </app-ticket>
 </div>
